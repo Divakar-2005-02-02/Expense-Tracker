@@ -1,3 +1,4 @@
+Copy code
 <?php
 session_start();
 $var = "";
@@ -9,36 +10,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $servername = "localhost";
     $username1 = "root";
     $dbpassword = "";
-    $dbname = $username;
+    $dbname = "your_database_name"; // Replace with your actual database name
     $tbname = "usertable";
     $_SESSION['user'] = $username;
 
     try {
-        $conn = mysqli_connect($servername, $username1, $dbpassword, $dbname);
+        $conn = new mysqli($servername, $username1, $dbpassword, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            throw new Exception("Connection failed: " . $conn->connect_error);
+        }
     } catch (Exception $ex) {
-        $dd = $ex->getMessage();
-        $conn = 0;
+        $var = "Invalid Username";
+        $conn = null;
     }
 
-    if (!$conn) {
-        $var = "Invalid Username";
-    } else {
+    if ($conn) {
         $sql = "SELECT Password1,Fullname FROM $tbname WHERE Fullname = '$username'";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
             $pass = $row['Password1'];
             $user = $row["Fullname"];
+
             if (($password != $pass) or ($username != $user)) {
                 $var = "Invalid Username or Password";
             } else {
-                // Redirect to Dash.php after successful login
                 header("Location: dash.php");
                 exit;
             }
         } else {
             $var = "Username Not Found";
         }
+
+        $conn->close();
     }
 }
 ?>
@@ -227,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <form name="fs1" method="post" action="">
                 <input type="text" name="username" placeholder="Username" required><br>
                 <input type="password" name="pass" placeholder="Password" required><br>
-                <!-- Add an ID to the submit button for JavaScript -->
+                
                 <input type="submit" value="Sign In" id="signin-btn"><br>
             </form>
             <p class="error-msg" id="error-msg">
@@ -240,12 +246,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up!</a></p>
         </div>
 
-        <!-- Add a hidden loader container -->
         <div class="loader-container" id="loader-container" style="display: none;">
             <div class="loader"></div>
         </div>
 
-        <!-- JavaScript to show loader when the button is clicked -->
         <script>
             document.getElementById("signin-btn").addEventListener("click", function () {
                 document.getElementById("loader-container").style.display = "flex";

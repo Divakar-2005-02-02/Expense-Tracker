@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Expense Tracker</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <nav class="sidebar">
+         <div class="text">
+            Side Menu
+         </div>
+         <ul class="feat-show">
+            <li class="bttn"><a href="dash.php">Dashboard</a></li>
+            <li class="bttn"><a href="profile.php">Profile</a></li>
+            <li>
+               <a href="#" class="feat-btn">Expense
+               <span class="fas fa-caret-down first"></span>
+               </a>
+               <ul class="feat-show">
+                  <li><a href="1.php">Add Expense</a></li>
+               </ul>
+            </li>
+            <li>
+               <a href="#" class="serv-btn">Report
+               <span class="fas fa-caret-down second"></span>
+               </a>
+               <ul class="serv-show">
+                  <li><a href="view.php">Track Expense</a></li>
+                  <li><a href="survey.php">Expense Chart</a></li>
+               </ul>
+            </li>
+            <li class="bttn"><a href='down.php'>Download Report</a></li>
+            <li class="bttn"><a href="changepass.php">Change Password</a></li>
+            <li class="bttn"><a href="contactus.html">Feedback</a></li>
+            <li class="bttn"><a href="logout.php">Logout</a></li>
+         </ul>
+      </nav>
+      <div class="content">
+      </div>
+      <script> 
+         
+         $(document).ready(function() {
+            $('.btn').click(function(event) {
+               event.preventDefault();
+               $(this).toggleClass("click");
+               $('.sidebar').toggleClass("show");
+            });
+
+            $('.feat-btn').click(function(event) {
+               event.preventDefault(); 
+               $('nav ul .feat-show').toggleClass("show");
+               $('nav ul .first').toggleClass("rotate");
+            });
+
+            $('.serv-btn').click(function(event) {
+               event.preventDefault(); 
+               $('nav ul .serv-show').toggleClass("show1");
+               $('nav ul .second').toggleClass("rotate");
+
+            });
+
+            $('nav ul li').click(function() {
+               $(this).addClass("active").siblings().removeClass("active");
+            });
+         });
+         $(document).ready(function() {
+   
+    var currentUrl = window.location.href;
+    $('.bttn a').each(function() {
+
+        var menuItemUrl = $(this).attr('href');
+
+       
+        if (currentUrl.includes(menuItemUrl)) {
+            $(this).closest('li').addClass('active');
+        }
+    });
+    $('.bttn a').click(function(event) {
+        
+        event.preventDefault();
+        $('.bttn').removeClass('active');
+
+        $(this).closest('li.bttn').addClass('active');
+
+        var link = $(this).attr('href');
+        window.location.href = link;
+    });
+});
+      </script>
+   </body>
+</html>
