@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spendwise-ExpenseTracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <img class="logo"  style=" height:55px;
+            width: 180px;" src="logo2.png">
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="contactus.html">Feedback</a></li>
+            </ul>
+        </nav>
+        <div class="center">
+            <h1>Welcome To Spendwise</h1>
+            <h2>Track your wallet</h2>
+            <div class="buttons">
+                <button onclick="login()">Login</button>
+                <button class="btn2" onclick="create()">Create Account</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function login() {
+            window.location.href ="login.php"; 
+        }
+
+        function create() {
+            window.location.href = "create.php";
+        }
+    </script>
+</body>
+</html>
